@@ -1,0 +1,132 @@
+﻿@model OcrMvp.Models.PolicyInfo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PolicyInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PolicyNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PolicyNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaritalStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaritalStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HomeNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlanName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SumInsured)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SumInsured)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPremiumPayable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalPremiumPayable)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentMode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PaymentMode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentMethod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PaymentMethod)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InsuredSignedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InsuredSignedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RepresentativeSignedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RepresentativeSignedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RepresentativeName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RepresentativeName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RepresentativeCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RepresentativeCode)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

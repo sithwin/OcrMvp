@@ -1,0 +1,116 @@
+﻿@model OcrMvp.Models.PolicyInfo
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Policy Info</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PolicyNumber" class="control-label"></label>
+                <input asp-for="PolicyNumber" class="form-control" />
+                <span asp-validation-for="PolicyNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdNumber" class="control-label"></label>
+                <input asp-for="IdNumber" class="form-control" />
+                <span asp-validation-for="IdNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <input asp-for="Gender" class="form-control" />
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaritalStatus" class="control-label"></label>
+                <input asp-for="MaritalStatus" class="form-control" />
+                <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HomeNumber" class="control-label"></label>
+                <input asp-for="HomeNumber" class="form-control" />
+                <span asp-validation-for="HomeNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlanName" class="control-label"></label>
+                <input asp-for="PlanName" class="form-control" />
+                <span asp-validation-for="PlanName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SumInsured" class="control-label"></label>
+                <input asp-for="SumInsured" class="form-control" />
+                <span asp-validation-for="SumInsured" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalPremiumPayable" class="control-label"></label>
+                <input asp-for="TotalPremiumPayable" class="form-control" />
+                <span asp-validation-for="TotalPremiumPayable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentMode" class="control-label"></label>
+                <input asp-for="PaymentMode" class="form-control" />
+                <span asp-validation-for="PaymentMode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentMethod" class="control-label"></label>
+                <input asp-for="PaymentMethod" class="form-control" />
+                <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InsuredSignedDate" class="control-label"></label>
+                <input asp-for="InsuredSignedDate" class="form-control" />
+                <span asp-validation-for="InsuredSignedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepresentativeSignedDate" class="control-label"></label>
+                <input asp-for="RepresentativeSignedDate" class="form-control" />
+                <span asp-validation-for="RepresentativeSignedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepresentativeName" class="control-label"></label>
+                <input asp-for="RepresentativeName" class="form-control" />
+                <span asp-validation-for="RepresentativeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepresentativeCode" class="control-label"></label>
+                <input asp-for="RepresentativeCode" class="form-control" />
+                <span asp-validation-for="RepresentativeCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
