@@ -1,11 +1,11 @@
 ﻿using MongoDB.Driver;
-using OcrMvp.Models;
+using OcrService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OcrMvp.Data
+namespace OcrService.Data
 {
     public class MongoContext
     {
@@ -14,7 +14,7 @@ namespace OcrMvp.Data
         public MongoContext()
         {
             var mongoCleint = new MongoClient("mongodb://localhost:27017");
-            mongoDatabase = mongoCleint.GetDatabase("OcrDB");
+            mongoDatabase = mongoCleint.GetDatabase("OrcDB");
         }
 
         public IMongoCollection<PolicyInfo> PolicyInfo

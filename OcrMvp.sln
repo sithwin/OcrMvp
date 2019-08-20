@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcrMvp", "OcrMvp\OcrMvp.csproj", "{88432167-80EA-43E1-A3E7-CDCBD8C11C6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcrMvp", "OcrMvp\OcrMvp.csproj", "{88432167-80EA-43E1-A3E7-CDCBD8C11C6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcrService", "OcrService\OcrService.csproj", "{30F0F207-FEF0-4F65-8010-A9FCCB3B7627}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{88432167-80EA-43E1-A3E7-CDCBD8C11C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88432167-80EA-43E1-A3E7-CDCBD8C11C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88432167-80EA-43E1-A3E7-CDCBD8C11C6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30F0F207-FEF0-4F65-8010-A9FCCB3B7627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30F0F207-FEF0-4F65-8010-A9FCCB3B7627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30F0F207-FEF0-4F65-8010-A9FCCB3B7627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30F0F207-FEF0-4F65-8010-A9FCCB3B7627}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
