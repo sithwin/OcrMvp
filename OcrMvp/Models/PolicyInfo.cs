@@ -11,6 +11,8 @@ namespace OcrMvp.Models
     {
         [BsonId]
         public ObjectId Id { get; set; }
+
+        [BsonElement]
         public string PolicyNumber { get; set; }
 
         [BsonElement]

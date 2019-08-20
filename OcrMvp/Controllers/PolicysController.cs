@@ -4,15 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
+using OcrMvp.Data;
+using OcrMvp.Models;
 
 namespace OcrMvp.Controllers
 {
     public class PolicysController : Controller
     {
+        public readonly MongoContext context = new MongoContext();
+
         // GET: Policys
-        public ActionResult Index()
+        public ActionResult Index(string policyNumber)
         {
-            return View();
+            var result =  context.PolicyInfo.Find<PolicyInfo>(r => r.PolicyNumber == policyNumber).FirstOrDefault();
+            return View(result);
         }
 
         // GET: Policys/Details/5
@@ -30,12 +36,12 @@ namespace OcrMvp.Controllers
         // POST: Policys/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(PolicyInfo model)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                context.PolicyInfo.InsertOne(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
