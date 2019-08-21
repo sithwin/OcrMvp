@@ -65,8 +65,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\OcrClient.cs" />
     <Compile Include="FolderWatcher.cs" />
-    <Compile Include="CustomJsonConverter.cs" />
+    <Compile Include="Models\PolicyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
