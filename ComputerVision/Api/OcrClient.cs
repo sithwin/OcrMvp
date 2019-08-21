@@ -36,7 +36,6 @@ namespace ComputerVision.Api
             {
                 response = result.StatusCode.ToString();
             }
-            return response;
         }
     }
 }
