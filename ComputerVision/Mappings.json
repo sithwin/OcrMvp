@@ -1,0 +1,97 @@
+{
+  "MappingElement": [
+    {
+      "Field": "FullName",
+      "InitialPosition": "1. Full Name :",
+      "FinalPosition": "2. NRIC / Passport / FIN :"
+    },
+    {
+      "Field": "IdNumber",
+      "InitialPosition": "2. NRIC / Passport / FIN :",
+      "FinalPosition": "3. Nationality :"
+    },
+    {
+      "Field": "Nationality",
+      "InitialPosition": "3. Nationality :",
+      "FinalPosition": "4. Date of Birth :"
+    },
+    {
+      "Field": "DateOfBirth",
+      "InitialPosition": "4. Date of Birth :",
+      "FinalPosition": "( DD - MM - YYYY )"
+    },
+    {
+      "Field": "Gender",
+      "InitialPosition": "5. Gender :",
+      "FinalPosition": "* M - Male / F - Female"
+    },
+    {
+      "Field": "MaritalStatus",
+      "InitialPosition": "6. Marital Status :",
+      "FinalPosition": "* S - Single / M - Married"
+    },
+    {
+      "Field": "Address",
+      "InitialPosition": "7. Residential Address :",
+      "FinalPosition": "8. Contact Details"
+    },
+    {
+      "Field": "Mobile",
+      "InitialPosition": "Mobile number :",
+      "FinalPosition": "Home number :"
+    },
+    {
+      "Field": "HomeNumber",
+      "InitialPosition": "Home number :",
+      "FinalPosition": "Section B - Plan Details"
+    },
+    {
+      "Field": "PlanName",
+      "InitialPosition": "Plan Name",
+      "FinalPosition": null,
+      "AdjustIndex": 3
+    },
+    {
+      "Field": "SumInsured",
+      "InitialPosition": "Sum Insured",
+      "FinalPosition": null,
+      "AdjustIndex": 3
+    },
+    {
+      "Field": "TotalPremiumPayable",
+      "InitialPosition": "Total Premium Payable",
+      "FinalPosition": null,
+      "AdjustIndex": 3
+    },
+    {
+      "Field": "PaymentMode",
+      "InitialPosition": "Payment Mode",
+      "FinalPosition": "* SP - Single Premium | 01 - Anually | 02 - Semi Anually | 04 - Quarterly | 12 - Monthly"
+    },
+    {
+      "Field": "PaymentMethod",
+      "InitialPosition": "1. Full Name :",
+      "FinalPosition": ""
+    },
+    {
+      "Field": "InsuredSignedDate",
+      "InitialPosition": "1. Full Name :",
+      "FinalPosition": "2. NRIC / Passport / FIN :"
+    },
+    {
+      "Field": "RepresentativeSignedDate",
+      "InitialPosition": "1. Full Name :",
+      "FinalPosition": "2. NRIC / Passport / FIN :"
+    },
+    {
+      "Field": "RepresentativeName",
+      "InitialPosition": "1. Full Name :",
+      "FinalPosition": "2. NRIC / Passport / FIN :"
+    },
+    {
+      "Field": "RepresentativeCode",
+      "InitialPosition": "1. Full Name :",
+      "FinalPosition": "2. NRIC / Passport / FIN :"
+    }
+  ]
+}

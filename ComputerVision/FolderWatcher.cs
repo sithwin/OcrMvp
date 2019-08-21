@@ -1,5 +1,6 @@
 ﻿using ComputerVision.Api;
 using ComputerVision.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Permissions;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace ComputerVision
 {
@@ -34,7 +36,7 @@ namespace ComputerVision
         OcrClient _orcClient;
 
         public FolderWatcher(string sourcePath)
-        {
+        {            
             this._sourcePath = sourcePath;
             this._orcClient = new OcrClient();
         }
@@ -92,6 +94,7 @@ namespace ComputerVision
         {
             try
             {
+               
                 HttpClient client = new HttpClient();
 
                 // Request headers.
@@ -178,11 +181,15 @@ namespace ComputerVision
                                    JToken.Parse(contentString).ToString());
                 JObject o1 = (JObject)JToken.Parse(contentString);
 
-                var postTitles =
+                List<String> OCRData =
                     (from p in o1["recognitionResults"][0]["lines"]
                     select (string)p["text"]).ToList();
 
-                var model = ToCustomerDetails(postTitles);
+                var jsonstring = System.IO.File.ReadAllText(@"D:\hackathon\OcrMvp\ComputerVision\Mappings.json");
+                
+                Mappings yourObject = new JavaScriptSerializer().Deserialize<Mappings>(jsonstring);
+
+                var model = ToCustomerDetails(OCRData);
                 await _orcClient.PostPolicyInfoAsync(model);
 
                 //Archieve the file
@@ -209,6 +216,15 @@ namespace ComputerVision
                 BinaryReader binaryReader = new BinaryReader(fileStream);
                 return binaryReader.ReadBytes((int)fileStream.Length);
             }
+        }
+
+        PolicyInfo ModelMapping(Mappings mappings, List<string> OCRData)
+        {
+
+            return new PolicyInfo
+            {
+                
+            };
         }
 
         PolicyInfo ToCustomerDetails(List<string> postTitles)

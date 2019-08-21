@@ -28,4 +28,18 @@ namespace ComputerVision.Models
         public string RepresentativeName { get; set; }
         public string RepresentativeCode { get; set; }
     }
+
+    public class MappingElement
+    {
+        public string Field { get; set; }
+        public string InitialPosition { get; set; }
+        public string FinalPosition { get; set; }
+        public int AdjustIndex { get; set; }
+               
+    }
+
+    public class Mappings
+    {
+        public List<MappingElement> MappingElement { get; set; }
+    }
 }
