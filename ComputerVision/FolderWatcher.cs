@@ -73,10 +73,10 @@ namespace ComputerVision
         // Define the event handlers.
         void OnCreated(object source, FileSystemEventArgs e)
         {
-            fileName = e.FullPath;
+            fileName = e.Name;
             // Specify what is done when a file is changed, created, or deleted.
-            Console.WriteLine($"File: {fileName} {e.ChangeType}");
-            ReadText(fileName).Wait();
+            Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
+            ReadText(e.FullPath).Wait();
         }
 
         async Task ReadText(string imageFilePath)
