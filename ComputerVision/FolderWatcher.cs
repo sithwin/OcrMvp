@@ -26,9 +26,13 @@ namespace ComputerVision
         const string uriBase =
             "https://manuhackathon.cognitiveservices.azure.com/vision/v2.0/read/core/asyncBatchAnalyze";
 
-        string sourcePath = ConfigurationManager.AppSettings["DirectoryPath"].ToString();
-        //string targetPath = Path.Combine(ConfigurationManager.AppSettings["DirectoryPath"].ToString(), "Archive");
-        string fileName = string.Empty;
+        string _sourcePath = string.Empty;
+        string _fileName = string.Empty;
+
+        public FolderWatcher(string sourcePath)
+        {
+            this._sourcePath = sourcePath;
+        }
 
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
         public void Run()
@@ -36,7 +40,7 @@ namespace ComputerVision
             // Create a new FileSystemWatcher and set its properties.
             using (FileSystemWatcher watcher = new FileSystemWatcher())
             {
-                watcher.Path = sourcePath;
+                watcher.Path = _sourcePath;
 
                 // Watch for changes in LastAccess and LastWrite times, and
                 // the renaming of files or directories.
@@ -65,15 +69,15 @@ namespace ComputerVision
 
         void ArchiveFile(string fileName)
         {            
-            string sourceFile = Path.Combine(sourcePath, fileName);
-            string destFile = Path.Combine(sourcePath, "Archive", fileName);
+            string sourceFile = Path.Combine(_sourcePath, fileName);
+            string destFile = Path.Combine(_sourcePath, "Archive", fileName);
             File.Move(sourceFile, destFile);
         }
 
         // Define the event handlers.
         void OnCreated(object source, FileSystemEventArgs e)
         {
-            fileName = e.Name;
+            _fileName = e.Name;
             // Specify what is done when a file is changed, created, or deleted.
             Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
             ReadText(e.FullPath).Wait();
@@ -167,7 +171,7 @@ namespace ComputerVision
                     JToken.Parse(contentString).ToString());
 
                 //Archieve the file
-                ArchiveFile(fileName);
+                ArchiveFile(_fileName);
                 
                 //JObject o1 = JObject.Parse(contentString);
 
