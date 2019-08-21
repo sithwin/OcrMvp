@@ -26,9 +26,9 @@ namespace ComputerVision
         const string uriBase =
             "https://manuhackathon.cognitiveservices.azure.com/vision/v2.0/read/core/asyncBatchAnalyze";
 
-        static string sourcePath = ConfigurationManager.AppSettings["DirectoryPath"].ToString();
-        static string targetPath = Path.Combine(ConfigurationManager.AppSettings["DirectoryPath"].ToString(), "Archive");
-        static string fileName = string.Empty;
+        string sourcePath = ConfigurationManager.AppSettings["DirectoryPath"].ToString();
+        //string targetPath = Path.Combine(ConfigurationManager.AppSettings["DirectoryPath"].ToString(), "Archive");
+        string fileName = string.Empty;
 
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
         public void Run()
@@ -63,23 +63,23 @@ namespace ComputerVision
             }
         }
 
-        static void ArchiveFile(string fileName)
+        void ArchiveFile(string fileName)
         {            
             string sourceFile = Path.Combine(sourcePath, fileName);
-            string destFile = Path.Combine(targetPath, fileName);
+            string destFile = Path.Combine(sourcePath, "Archive", fileName);
             File.Move(sourceFile, destFile);
         }
 
         // Define the event handlers.
-        private static void OnCreated(object source, FileSystemEventArgs e)
+        void OnCreated(object source, FileSystemEventArgs e)
         {
-            // Specify what is done when a file is changed, created, or deleted.
-            Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
             fileName = e.FullPath;
-            ReadText(e.FullPath).Wait();
+            // Specify what is done when a file is changed, created, or deleted.
+            Console.WriteLine($"File: {fileName} {e.ChangeType}");
+            ReadText(fileName).Wait();
         }
 
-        static async Task ReadText(string imageFilePath)
+        async Task ReadText(string imageFilePath)
         {
             try
             {
