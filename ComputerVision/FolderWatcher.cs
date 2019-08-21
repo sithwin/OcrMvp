@@ -1,14 +1,14 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using ComputerVision.Api;
+using ComputerVision.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Permissions;
 using System.Threading.Tasks;
-using System.Web.Script.Serialization;
 
 namespace ComputerVision
 {
@@ -31,9 +31,12 @@ namespace ComputerVision
         string _sourcePath = string.Empty;
         string _fileName = string.Empty;
 
+        OcrClient _orcClient;
+
         public FolderWatcher(string sourcePath)
         {
             this._sourcePath = sourcePath;
+            this._orcClient = new OcrClient();
         }
 
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
@@ -179,10 +182,11 @@ namespace ComputerVision
                     (from p in o1["recognitionResults"][0]["lines"]
                     select (string)p["text"]).ToList();
 
-                ToCustomerDetails(postTitles);
+                var model = ToCustomerDetails(postTitles);
+                await _orcClient.PostPolicyInfoAsync(model);
 
                 //Archieve the file
-                //ArchiveFile(_fileName);
+                ArchiveFile(_fileName);
             }
             catch (Exception e)
             {
@@ -207,7 +211,7 @@ namespace ComputerVision
             }
         }
 
-        void ToCustomerDetails(List<string> postTitles)
+        PolicyInfo ToCustomerDetails(List<string> postTitles)
         {
             int nameIndex = postTitles.FindIndex(x => x.Contains("Full Name"));
             int idIndex = postTitles.FindIndex(x => x.Contains("NRIC / Passport / FIN"));
@@ -231,8 +235,8 @@ namespace ComputerVision
             var ids = postTitles.Skip(idIndex + 1).Take(nationIndex - (idIndex + 1));
             var id = String.Join(" ", ids);
 
-            var nations = postTitles.Skip(nationIndex + 1).Take(dobStart - (nationIndex + 1));
-            var nation = String.Join(" ", nations);
+            var nationalities = postTitles.Skip(nationIndex + 1).Take(dobStart - (nationIndex + 1));
+            var nationality = String.Join(" ", nationalities);
 
             var dob = postTitles.Skip(dobStart + 1).Take(dobEnd - (dobStart + 1)).FirstOrDefault().Replace(".", "-");
 
@@ -250,6 +254,19 @@ namespace ComputerVision
 
             var homeNos = postTitles.Skip(homeNoIndex + 1).Take(sectionBIndex - (homeNoIndex + 1));
             var homeNo = String.Join(" ", homeNos);
+
+            return new PolicyInfo
+            {
+                FullName = fullName,
+                IdNumber = id,
+                Nationality = nationality,
+                DateOfBirth = dob,
+                Gender = gender,
+                MaritalStatus = maritalStatus,
+                Address = address,
+                Mobile = mobileNo,
+                HomeNumber = homeNo
+            };
         }
     } 
 }

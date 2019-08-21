@@ -22,6 +22,9 @@ namespace OcrMvp.Models
         public string IdNumber { get; set; }
 
         [BsonElement]
+        public string Nationality { get; set; }
+
+        [BsonElement]
         public String DateOfBirth { get; set; }
 
         [BsonElement]
