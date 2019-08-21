@@ -66,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FolderWatcher.cs" />
+    <Compile Include="JsonMapping.cs" />
+    <Compile Include="OCRInterface.cs" />
+    <Compile Include="PolicyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

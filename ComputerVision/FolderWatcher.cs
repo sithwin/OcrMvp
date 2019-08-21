@@ -169,7 +169,12 @@ namespace ComputerVision
                 // Display the JSON response.
                 Console.WriteLine("\nResponse:\n\n{0}\n",
                     JToken.Parse(contentString).ToString());
+                JObject o1 = (JObject)JToken.Parse(contentString);
 
+                var postTitles =
+                    from p in o1["recognitionResults"][0]["lines"]
+                    select (string)p["text"];
+            
                 //Archieve the file
                 ArchiveFile(_fileName);
                 
