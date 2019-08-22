@@ -5,14 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OcrMvp.Models
+namespace OcrService.Models
 {
     public class PolicyInfo
     {
         [BsonId]
         public ObjectId Id { get; set; }
-
-        [BsonElement]
         public string PolicyNumber { get; set; }
 
         [BsonElement]
@@ -20,9 +18,6 @@ namespace OcrMvp.Models
 
         [BsonElement]
         public string IdNumber { get; set; }
-
-        [BsonElement]
-        public string Nationality { get; set; }
 
         [BsonElement]
         public String DateOfBirth { get; set; }

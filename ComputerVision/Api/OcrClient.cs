@@ -11,7 +11,7 @@ namespace ComputerVision.Api
 {
     public class OcrClient
     {
-        async Task PostPolicyInfoAsync(PolicyInfo model)
+        public async Task PostPolicyInfoAsync(PolicyInfo model)
         {
             var response = string.Empty;
             HttpClient client = new HttpClient();

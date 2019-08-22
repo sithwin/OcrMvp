@@ -1,12 +1,18 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using ComputerVision.Api;
+using ComputerVision.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
-using System.Configuration;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Security.Permissions;
+using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace ComputerVision
 {
@@ -29,9 +35,12 @@ namespace ComputerVision
         string _sourcePath = string.Empty;
         string _fileName = string.Empty;
 
+        OcrClient _orcClient;
+
         public FolderWatcher(string sourcePath)
-        {
+        {            
             this._sourcePath = sourcePath;
+            this._orcClient = new OcrClient();
         }
 
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
@@ -87,6 +96,7 @@ namespace ComputerVision
         {
             try
             {
+               
                 HttpClient client = new HttpClient();
 
                 // Request headers.
@@ -169,12 +179,23 @@ namespace ComputerVision
                 // Display the JSON response.
                 Console.WriteLine("\nResponse:\n\n{0}\n",
                     JToken.Parse(contentString).ToString());
+                Console.WriteLine("\nResponse:\n\n{0}\n",
+                                   JToken.Parse(contentString).ToString());
+                JObject o1 = (JObject)JToken.Parse(contentString);
+
+                List<String> OCRData =
+                    (from p in o1["recognitionResults"][0]["lines"]
+                    select (string)p["text"]).ToList();
+
+                var jsonstring = System.IO.File.ReadAllText(@"D:\hackathon\OcrMvp\ComputerVision\Mappings.json");
+                
+                Mappings yourObject = new JavaScriptSerializer().Deserialize<Mappings>(jsonstring);
+                ModelMapping(yourObject, OCRData);
+                var model = ToCustomerDetails(OCRData);
+                await _orcClient.PostPolicyInfoAsync(model);
 
                 //Archieve the file
                 ArchiveFile(_fileName);
-                
-                //JObject o1 = JObject.Parse(contentString);
-
             }
             catch (Exception e)
             {
@@ -187,7 +208,7 @@ namespace ComputerVision
         /// </summary>
         /// <param name="imageFilePath">The image file to read.</param>
         /// <returns>The byte array of the image data.</returns>
-        static byte[] GetImageAsByteArray(string imageFilePath)
+        byte[] GetImageAsByteArray(string imageFilePath)
         {
             // Open a read-only file stream for the specified file.
             using (FileStream fileStream =
@@ -197,6 +218,91 @@ namespace ComputerVision
                 BinaryReader binaryReader = new BinaryReader(fileStream);
                 return binaryReader.ReadBytes((int)fileStream.Length);
             }
+        }
+
+        PolicyInfo ModelMapping(Mappings mappings, List<string> OCRData)
+        {
+            int IndexInitial;
+            int IndexFinal;            
+
+            List<MappingElement> map = mappings.MappingElement;
+            PolicyInfo polInfo = new PolicyInfo();
+
+            foreach(MappingElement m in map)
+            {
+                String Fieldname = m.Field;
+                int AdjustIndex = m.AdjustIndex;               
+                IndexInitial = OCRData.FindIndex(x => x.Equals(m.InitialPosition));
+                IndexFinal = OCRData.FindIndex(x => x.Equals(m.FinalPosition));
+                StringBuilder Modelvalue = new StringBuilder();
+                for(int i=IndexInitial+1; i<IndexFinal; i++)
+                {
+                    Modelvalue.Append(OCRData[i]);
+                }
+                Type myType = typeof(PolicyInfo);
+                PropertyInfo myPropInfo = myType.GetProperty(Fieldname);
+                myPropInfo.SetValue(polInfo, Modelvalue.ToString());
+            }
+
+            return polInfo;
+        }
+
+        PolicyInfo ToCustomerDetails(List<string> postTitles)
+        {
+            int nameIndex = postTitles.FindIndex(x => x.Contains("Full Name"));
+            int idIndex = postTitles.FindIndex(x => x.Contains("NRIC / Passport / FIN"));
+            int nationIndex = postTitles.FindIndex(x => x.Contains("Nationality"));
+            int dobStart = postTitles.FindIndex(x => x.Contains("Date of Birth"));
+            int dobEnd = postTitles.FindIndex(x => x.Contains("DD - MM - YYYY"));
+            int genderStart = postTitles.FindIndex(x => x.Contains("Gender"));
+            int genderEnd = postTitles.FindIndex(x => x.Contains("M - Male / F - Female"));
+            int maritalStart = postTitles.FindIndex(x => x.Contains("Marital Status"));
+            int maritalEnd = postTitles.FindIndex(x => x.Contains("S - Single / M - Married"));
+            int addressIndex = postTitles.FindIndex(x => x.Contains("Residential Address"));
+            int contactIndex = postTitles.FindIndex(x => x.Contains("Contact Details"));
+            int mobileNoIndex = postTitles.FindIndex(x => x.Contains("Mobile number"));
+            int homeNoIndex = postTitles.FindIndex(x => x.Contains("Home number"));
+            int sectionBIndex = postTitles.FindIndex(x => x.Contains("Section B - Plan Details"));
+
+
+            var names = postTitles.Skip(nameIndex + 1).Take(idIndex - (nameIndex + 1));
+            var fullName = String.Join(" ", names);
+            
+            var ids = postTitles.Skip(idIndex + 1).Take(nationIndex - (idIndex + 1));
+            var id = String.Join(" ", ids);
+
+            var nationalities = postTitles.Skip(nationIndex + 1).Take(dobStart - (nationIndex + 1));
+            var nationality = String.Join(" ", nationalities);
+
+            var dob = postTitles.Skip(dobStart + 1).Take(dobEnd - (dobStart + 1)).FirstOrDefault().Replace(".", "-");
+
+            var genders = postTitles.Skip(genderStart + 1).Take(genderEnd - (genderStart + 1));
+            var gender = String.Join(" ", genders);
+            
+            var maritalStatuses = postTitles.Skip(maritalStart + 1).Take(maritalEnd - (maritalStart + 1));
+            var maritalStatus = String.Join(" ", maritalStatuses);
+
+            var addresses = postTitles.Skip(addressIndex + 1).Take(contactIndex - (addressIndex + 1));
+            var address = String.Join(" ", addresses);
+
+            var mobileNos = postTitles.Skip(mobileNoIndex + 1).Take(homeNoIndex - (mobileNoIndex + 1));
+            var mobileNo = String.Join(" ", mobileNos);
+
+            var homeNos = postTitles.Skip(homeNoIndex + 1).Take(sectionBIndex - (homeNoIndex + 1));
+            var homeNo = String.Join(" ", homeNos);
+
+            return new PolicyInfo
+            {
+                FullName = fullName,
+                IdNumber = id,
+                Nationality = nationality,
+                DateOfBirth = dob,
+                Gender = gender,
+                MaritalStatus = maritalStatus,
+                Address = address,
+                Mobile = mobileNo,
+                HomeNumber = homeNo
+            };
         }
     } 
 }
