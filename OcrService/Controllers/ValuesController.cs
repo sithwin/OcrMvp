@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using OcrService.Models;
 
 namespace OcrService.Controllers
 {
@@ -26,7 +27,7 @@ namespace OcrService.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] PolicyInfo value)
         {
         }
 
@@ -41,5 +42,11 @@ namespace OcrService.Controllers
         public void Delete(int id)
         {
         }
+    }
+
+    public class Student
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
