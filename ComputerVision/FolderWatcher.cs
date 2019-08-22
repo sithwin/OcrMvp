@@ -190,7 +190,7 @@ namespace ComputerVision
                 var jsonstring = System.IO.File.ReadAllText(@"D:\hackathon\OcrMvp\ComputerVision\Mappings.json");
                 
                 Mappings yourObject = new JavaScriptSerializer().Deserialize<Mappings>(jsonstring);
-                ModelMapping(yourObject,OCRData)
+                ModelMapping(yourObject, OCRData);
                 var model = ToCustomerDetails(OCRData);
                 await _orcClient.PostPolicyInfoAsync(model);
 
@@ -241,7 +241,7 @@ namespace ComputerVision
                 }
                 Type myType = typeof(PolicyInfo);
                 PropertyInfo myPropInfo = myType.GetProperty(Fieldname);
-                myPropInfo.SetValue(this, Modelvalue.ToString(), null);
+                myPropInfo.SetValue(polInfo, Modelvalue.ToString());
             }
 
             return polInfo;

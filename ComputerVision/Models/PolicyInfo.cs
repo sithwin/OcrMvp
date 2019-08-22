@@ -19,8 +19,8 @@ namespace ComputerVision.Models
         public string Mobile { get; set; }
         public string HomeNumber { get; set; }
         public string PlanName { get; set; }
-        public decimal SumInsured { get; set; }
-        public decimal TotalPremiumPayable { get; set; }
+        public string SumInsured { get; set; }
+        public string TotalPremiumPayable { get; set; }
         public string PaymentMode { get; set; }
         public string PaymentMethod { get; set; }
         public String InsuredSignedDate { get; set; }
