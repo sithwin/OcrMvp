@@ -21,6 +21,7 @@ namespace OcrService.Controllers
             policyInfo.PolicyNumber = model.PolicyNumber;
             policyInfo.FullName = model.FullName;
             policyInfo.IdNumber = model.IdNumber;
+            policyInfo.Nationality = model.Nationality;
             policyInfo.DateOfBirth = model.DateOfBirth;
             policyInfo.Gender = model.Gender;
             policyInfo.MaritalStatus = model.MaritalStatus;
