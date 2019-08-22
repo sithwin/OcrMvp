@@ -8,7 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Security.Permissions;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
@@ -188,7 +190,7 @@ namespace ComputerVision
                 var jsonstring = System.IO.File.ReadAllText(@"D:\hackathon\OcrMvp\ComputerVision\Mappings.json");
                 
                 Mappings yourObject = new JavaScriptSerializer().Deserialize<Mappings>(jsonstring);
-
+                ModelMapping(yourObject,OCRData)
                 var model = ToCustomerDetails(OCRData);
                 await _orcClient.PostPolicyInfoAsync(model);
 
@@ -224,19 +226,25 @@ namespace ComputerVision
             int IndexFinal;            
 
             List<MappingElement> map = mappings.MappingElement;
+            PolicyInfo polInfo = new PolicyInfo();
 
             foreach(MappingElement m in map)
             {
                 String Fieldname = m.Field;
-                int AdjustIndex = m.AdjustIndex;
+                int AdjustIndex = m.AdjustIndex;               
                 IndexInitial = OCRData.FindIndex(x => x.Equals(m.InitialPosition));
                 IndexFinal = OCRData.FindIndex(x => x.Equals(m.FinalPosition));
+                StringBuilder Modelvalue = new StringBuilder();
+                for(int i=IndexInitial+1; i<IndexFinal; i++)
+                {
+                    Modelvalue.Append(OCRData[i]);
+                }
+                Type myType = typeof(PolicyInfo);
+                PropertyInfo myPropInfo = myType.GetProperty(Fieldname);
+                myPropInfo.SetValue(this, Modelvalue.ToString(), null);
             }
 
-            return new PolicyInfo
-            {
-                
-            };
+            return polInfo;
         }
 
         PolicyInfo ToCustomerDetails(List<string> postTitles)
