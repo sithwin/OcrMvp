@@ -1,6 +1,6 @@
-﻿using ComputerVision.Api;
+﻿using AutoMapper;
+using ComputerVision.Api;
 using ComputerVision.Models;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -34,6 +34,7 @@ namespace ComputerVision
 
         string _sourcePath = string.Empty;
         string _fileName = string.Empty;
+        IMapper _mapper;
 
         OcrClient _orcClient;
 
@@ -41,6 +42,17 @@ namespace ComputerVision
         {            
             this._sourcePath = sourcePath;
             this._orcClient = new OcrClient();
+            //_config = new MapperConfiguration(cfg => cfg.CreateMap<PolicyInfoDTO, PolicyInfo>()
+            //                                 .ForMember(dest => dest.SumInsured = )));
+            //_mapper = _config.CreateMapper();
+
+
+            var configuration = new MapperConfiguration(cfg => {
+                cfg.CreateMap<string, decimal>().ConvertUsing(new DecimalTypeConverter());
+                cfg.CreateMap<PolicyInfoDTO, PolicyInfo>();
+            });
+            configuration.AssertConfigurationIsValid();
+            _mapper = configuration.CreateMapper();
         }
 
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
@@ -187,11 +199,13 @@ namespace ComputerVision
                     (from p in o1["recognitionResults"][0]["lines"]
                     select (string)p["text"]).ToList();
 
-                var jsonstring = Path.Combine(Directory.GetParent(Directory.GetParent("Mappings.json").FullName).FullName.Replace("\\bin", ""), "Mappings.json");
-                
+                var jsonPath = Path.Combine(Directory.GetParent(Directory.GetParent("Mappings.json").FullName).FullName.Replace("\\bin", ""), "Mappings.json");
+                var jsonstring = System.IO.File.ReadAllText(jsonPath);
+
                 Mappings yourObject = new JavaScriptSerializer().Deserialize<Mappings>(jsonstring);
-                var model = ModelMapping(yourObject, OCRData);
-               
+                var customerDTO = ModelMapping(yourObject, OCRData);
+
+                var model = _mapper.Map<PolicyInfoDTO, PolicyInfo>(customerDTO);
                 await _orcClient.PostPolicyInfoAsync(model);
 
                 //Archieve the file
@@ -220,13 +234,13 @@ namespace ComputerVision
             }
         }
 
-        PolicyInfo ModelMapping(Mappings mappings, List<string> OCRData)
+        PolicyInfoDTO ModelMapping(Mappings mappings, List<string> OCRData)
         {
             int IndexInitial;
             int IndexFinal;            
 
             List<MappingElement> map = mappings.MappingElement;
-            PolicyInfo polInfo = new PolicyInfo();
+            PolicyInfoDTO polInfo = new PolicyInfoDTO();
 
             foreach(MappingElement m in map)
             {
@@ -246,12 +260,20 @@ namespace ComputerVision
                 {
                     Modelvalue.Append(OCRData[IndexInitial + AdjustIndex]);
                 }
-                Type myType = typeof(PolicyInfo);
+                Type myType = typeof(PolicyInfoDTO);
                 PropertyInfo myPropInfo = myType.GetProperty(Fieldname);
                 myPropInfo.SetValue(polInfo, Modelvalue.ToString().Trim().Replace("Date : ", ""));
             }
 
             return polInfo;
         }        
-    } 
+    }
+
+    public class DecimalTypeConverter : ITypeConverter<string, decimal>
+    {
+        public decimal Convert(string source, decimal destination, ResolutionContext context)
+        {
+            return decimal.Parse(source.Replace(" ", ""));
+        }
+    }
 }
