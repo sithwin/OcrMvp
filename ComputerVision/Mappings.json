@@ -24,12 +24,14 @@
     {
       "Field": "DateOfBirth",
       "InitialPosition": "Date of Birth",
-      "FinalPosition": "(DD - MM - YYYY)"
+      "FinalPosition": null,
+      "AdjustIndex": 1
     },
     {
       "Field": "Gender",
       "InitialPosition": "Gender",
-      "FinalPosition": "M - Male / F - Female"
+      "FinalPosition": null,
+      "AdjustIndex": 1
     },
     {
       "Field": "MaritalStatus",
