@@ -90,7 +90,7 @@
                                 <label asp-for="MaritalStatus" class="control-label"></label>
                             </div>
                             <div class="col-md-7">
-                                <select asp-for="Gender"
+                                <select asp-for="MaritalStatus"
                                         asp-items="ViewBag.MaritalStatusList" class="form-control"></select>
                                 <span asp-validation-for="MaritalStatus" class="text-danger"></span>
                             </div>
@@ -154,7 +154,8 @@
                                 <label asp-for="PaymentMode" class="control-label"></label>
                             </div>
                             <div class="col-md-7">
-                                <input asp-for="PaymentMode" class="form-control" />
+                                <select asp-for="PaymentMode"
+                                        asp-items="ViewBag.PaymentModeList" class="form-control"></select>
                                 <span asp-validation-for="PaymentMode" class="text-danger"></span>
                             </div>
                         </div>
@@ -163,7 +164,8 @@
                                 <label asp-for="PaymentMethod" class="control-label"></label>
                             </div>
                             <div class="col-md-7">
-                                <input asp-for="PaymentMethod" class="form-control" />
+                                <select asp-for="PaymentMethod"
+                                        asp-items="ViewBag.PaymentMethodList" class="form-control"></select>
                                 <span asp-validation-for="PaymentMethod" class="text-danger"></span>
                             </div>
                         </div>

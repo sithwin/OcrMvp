@@ -24,6 +24,8 @@ namespace OcrMvp.Controllers
 
                 this.ViewBag.GenderList = getGenderList();
                 this.ViewBag.MaritalStatusList = getMaritalStatus();
+                this.ViewBag.PaymentMethodList = getPaymentMethodList();
+                this.ViewBag.PaymentModeList = getPaymentModeList();
                 return View(result);
             }
             else
@@ -142,6 +144,54 @@ namespace OcrMvp.Controllers
             items.Add(new SelectListItem
             { Text = "Married", Value = "M" });
 
+            return items;
+        }
+
+        private List<SelectListItem> getPaymentModeList()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem
+            {
+                Text = "Select Payment Mode",
+                Value = "0",
+                Selected = true
+            });
+
+            items.Add(new SelectListItem
+            { Text = "Single Premium", Value = "SP" });
+
+            items.Add(new SelectListItem
+            { Text = "Annually", Value = "1" });
+
+            items.Add(new SelectListItem
+            { Text = "Semi Annually", Value = "2" });
+
+            items.Add(new SelectListItem
+            { Text = "Quartely", Value = "4" });
+
+            items.Add(new SelectListItem
+            { Text = "Monthly", Value = "12" });
+            return items;
+        }
+
+        private List<SelectListItem> getPaymentMethodList()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem
+            {
+                Text = "Select Payment Method",
+                Value = "0",
+                Selected = true
+            });
+
+            items.Add(new SelectListItem
+            { Text = "Cash", Value = "1" });
+
+            items.Add(new SelectListItem
+            { Text = "Cheque", Value = "2" });
+
+            items.Add(new SelectListItem
+            { Text = "Eletronic Fun Transfer", Value = "3" });
             return items;
         }
     }
