@@ -23,6 +23,7 @@ namespace ComputerVision.Models
         public string TotalPremiumPayable { get; set; }
         public string PaymentMode { get; set; }
         public string PaymentMethod { get; set; }
+        public string InitialPremium { get; set; }
         public String InsuredSignedDate { get; set; }
         public String RepresentativeSignedDate { get; set; }
         public string RepresentativeName { get; set; }

@@ -70,28 +70,35 @@
     },
     {
       "Field": "PaymentMethod",
-      "InitialPosition": "1. Full Name :",
-      "FinalPosition": ""
+      "InitialPosition": "Payment Method",
+      "FinalPosition": "Initial Premium"
+    },
+    {
+      "Field": "InitialPremium",
+      "InitialPosition": "Initial Premium",
+      "FinalPosition": "C - Cash | CQ - Cheque | EFT - Electronic Fund Transfer"
     },
     {
       "Field": "InsuredSignedDate",
-      "InitialPosition": "1. Full Name :",
-      "FinalPosition": "2. NRIC / Passport / FIN :"
+      "InitialPosition": "Signature of Representative",
+      "FinalPosition": null,
+      "AdjustIndex": 1
     },
     {
       "Field": "RepresentativeSignedDate",
-      "InitialPosition": "1. Full Name :",
-      "FinalPosition": "2. NRIC / Passport / FIN :"
+      "InitialPosition": "Signature of Representative",
+      "FinalPosition": null,
+      "AdjustIndex": 2
     },
     {
       "Field": "RepresentativeName",
-      "InitialPosition": "1. Full Name :",
-      "FinalPosition": "2. NRIC / Passport / FIN :"
+      "InitialPosition": "Rep Name :",
+      "FinalPosition": "Rep Code :"
     },
     {
       "Field": "RepresentativeCode",
-      "InitialPosition": "1. Full Name :",
-      "FinalPosition": "2. NRIC / Passport / FIN :"
+      "InitialPosition": "Rep Code :",
+      "FinalPosition": "Section A - Customer Details"
     }
   ]
 }
