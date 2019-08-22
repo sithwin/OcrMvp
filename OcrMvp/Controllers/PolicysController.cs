@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MongoDB.Driver;
 using OcrMvp.Data;
 using OcrMvp.Models;
@@ -17,8 +18,18 @@ namespace OcrMvp.Controllers
         // GET: Policys
         public ActionResult Index(string policyNumber)
         {
-            var result =  context.PolicyInfo.Find<PolicyInfo>(r => r.PolicyNumber == policyNumber).FirstOrDefault();
-            return View(result);
+            if (ModelState.IsValid)
+            {
+                var result = context.PolicyInfo.Find<PolicyInfo>(r => r.PolicyNumber == policyNumber).FirstOrDefault();
+
+                this.ViewBag.GenderList = getGenderList();
+                this.ViewBag.MaritalStatusList = getMaritalStatus();
+                return View(result);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // GET: Policys/Details/5
@@ -94,6 +105,44 @@ namespace OcrMvp.Controllers
             {
                 return View();
             }
+        }
+
+        private List<SelectListItem> getGenderList()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem
+            {
+                Text = "Select Gender",
+                Value = "0",
+                Selected = true
+            });
+
+            items.Add(new SelectListItem
+            { Text = "Male", Value = "M" });
+
+            items.Add(new SelectListItem
+            { Text = "Female", Value = "F" });
+
+            return items;
+        }
+
+        private List<SelectListItem> getMaritalStatus()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem
+            {
+                Text = "Select Marital Status",
+                Value = "0",
+                Selected = true
+            });
+
+            items.Add(new SelectListItem
+            { Text = "Single", Value = "S" });
+
+            items.Add(new SelectListItem
+            { Text = "Married", Value = "M" });
+
+            return items;
         }
     }
 }
