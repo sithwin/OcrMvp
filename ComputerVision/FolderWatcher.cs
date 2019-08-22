@@ -187,8 +187,9 @@ namespace ComputerVision
                     (from p in o1["recognitionResults"][0]["lines"]
                     select (string)p["text"]).ToList();
 
-                var jsonstring = Path.Combine(Directory.GetParent(Directory.GetParent("Mappings.json").FullName).FullName.Replace("\\bin", ""), "Mappings.json");
-                
+                var jsonPath = Path.Combine(Directory.GetParent(Directory.GetParent("Mappings.json").FullName).FullName.Replace("\\bin", ""), "Mappings.json");
+                var jsonstring = System.IO.File.ReadAllText(jsonPath);
+
                 Mappings yourObject = new JavaScriptSerializer().Deserialize<Mappings>(jsonstring);
                 var model = ModelMapping(yourObject, OCRData);
                
