@@ -273,7 +273,9 @@ namespace ComputerVision
     {
         public decimal Convert(string source, decimal destination, ResolutionContext context)
         {
-            return decimal.Parse(source.Replace(" ", ""));
+            decimal amount = 0;
+            Decimal.TryParse(source.Replace(" ", ""), out amount);
+            return amount;
         }
     }
 }
