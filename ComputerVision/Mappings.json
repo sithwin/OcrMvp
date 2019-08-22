@@ -8,38 +8,38 @@
     },
     {
       "Field": "FullName",
-      "InitialPosition": "1. Full Name :",
-      "FinalPosition": "2. NRIC / Passport / FIN :"
+      "InitialPosition": "Full Name",
+      "FinalPosition": "NRIC / Passport / FIN"
     },
     {
       "Field": "IdNumber",
-      "InitialPosition": "2. NRIC / Passport / FIN :",
-      "FinalPosition": "3. Nationality :"
+      "InitialPosition": "NRIC / Passport / FIN",
+      "FinalPosition": "Nationality :"
     },
     {
       "Field": "Nationality",
-      "InitialPosition": "3. Nationality :",
-      "FinalPosition": "4. Date of Birth :"
+      "InitialPosition": "Nationality",
+      "FinalPosition": "Date of Birth :"
     },
     {
       "Field": "DateOfBirth",
-      "InitialPosition": "4. Date of Birth :",
-      "FinalPosition": "( DD - MM - YYYY )"
+      "InitialPosition": "Date of Birth",
+      "FinalPosition": "(DD - MM - YYYY)"
     },
     {
       "Field": "Gender",
-      "InitialPosition": "5. Gender :",
-      "FinalPosition": "* M - Male / F - Female"
+      "InitialPosition": "Gender",
+      "FinalPosition": "M - Male / F - Female"
     },
     {
       "Field": "MaritalStatus",
-      "InitialPosition": "6. Marital Status :",
-      "FinalPosition": "* S - Single / M - Married"
+      "InitialPosition": "Marital Status",
+      "FinalPosition": "S - Single / M - Married"
     },
     {
       "Field": "Address",
-      "InitialPosition": "7. Residential Address :",
-      "FinalPosition": "8. Contact Details"
+      "InitialPosition": "Residential Address",
+      "FinalPosition": "Contact Details"
     },
     {
       "Field": "Mobile",
@@ -54,30 +54,27 @@
     {
       "Field": "PlanName",
       "InitialPosition": "Plan Name",
-      "FinalPosition": null,
-      "AdjustIndex": 3
+      "FinalPosition": "Sum Insured"
     },
     {
       "Field": "SumInsured",
       "InitialPosition": "Sum Insured",
-      "FinalPosition": null,
-      "AdjustIndex": 3
+      "FinalPosition": "Total Premium Payable"
     },
     {
       "Field": "TotalPremiumPayable",
       "InitialPosition": "Total Premium Payable",
-      "FinalPosition": null,
-      "AdjustIndex": 3
+      "FinalPosition": "Payment Mode"
     },
     {
       "Field": "PaymentMode",
       "InitialPosition": "Payment Mode",
-      "FinalPosition": "* SP - Single Premium | 01 - Anually | 02 - Semi Anually | 04 - Quarterly | 12 - Monthly"
+      "FinalPosition": "SP - Single Premium | 1 - Anually | 2 - Semi Anually | 4 - Quarterly | 12 - Monthly"
     },
     {
       "Field": "PaymentMethod",
       "InitialPosition": "Payment Method",
-      "FinalPosition": "* 1 - Cash | 2 - Cheque | 3 - Electronic Fund Transfer"
+      "FinalPosition": "1 - Cash | 2 - Cheque | 3 - Electronic Fund Transfer"
     },
     {
       "Field": "InsuredSignedDate",

@@ -246,8 +246,11 @@ namespace ComputerVision
             {
                 String Fieldname = m.Field;
                 int AdjustIndex = m.AdjustIndex;               
-                IndexInitial = OCRData.FindIndex(x => x.Equals(m.InitialPosition));
-                IndexFinal = OCRData.FindIndex(x => x.Equals(m.FinalPosition));
+                IndexInitial = OCRData.FindIndex(x => x.Contains(m.InitialPosition));
+                if (m.FinalPosition != null)
+                    IndexFinal = OCRData.FindIndex(x => x.Contains(m.FinalPosition));
+                else
+                    IndexFinal = -1;
                 StringBuilder Modelvalue = new StringBuilder();
                 if (AdjustIndex <=0 && IndexInitial >=0 && IndexFinal >=0)
                 {
