@@ -1,6 +1,12 @@
 {
   "MappingElement": [
     {
+      "Field": "PolicyNumber",
+      "InitialPosition": "APPLICATION FORM",
+      "FinalPosition": null,
+      "AdjustIndex": 2
+    },
+    {
       "Field": "FullName",
       "InitialPosition": "1. Full Name :",
       "FinalPosition": "2. NRIC / Passport / FIN :"
@@ -71,12 +77,7 @@
     {
       "Field": "PaymentMethod",
       "InitialPosition": "Payment Method",
-      "FinalPosition": "Initial Premium"
-    },
-    {
-      "Field": "InitialPremium",
-      "InitialPosition": "Initial Premium",
-      "FinalPosition": "C - Cash | CQ - Cheque | EFT - Electronic Fund Transfer"
+      "FinalPosition": "* 1 - Cash | 2 - Cheque | 3 - Electronic Fund Transfer"
     },
     {
       "Field": "InsuredSignedDate",
