@@ -220,6 +220,18 @@ namespace ComputerVision
 
         PolicyInfo ModelMapping(Mappings mappings, List<string> OCRData)
         {
+            int IndexInitial;
+            int IndexFinal;            
+
+            List<MappingElement> map = mappings.MappingElement;
+
+            foreach(MappingElement m in map)
+            {
+                String Fieldname = m.Field;
+                int AdjustIndex = m.AdjustIndex;
+                IndexInitial = OCRData.FindIndex(x => x.Equals(m.InitialPosition));
+                IndexFinal = OCRData.FindIndex(x => x.Equals(m.FinalPosition));
+            }
 
             return new PolicyInfo
             {
