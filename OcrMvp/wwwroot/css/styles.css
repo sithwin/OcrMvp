@@ -254,7 +254,7 @@ li ol, li ul {
 
 #nav ul li.selected {
 	position: relative;
-	top: -5px;
+	top: -1px;
 }
 
 #nav ul li.selected a, #nav ul li.selected a:hover {
