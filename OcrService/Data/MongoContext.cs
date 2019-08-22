@@ -14,7 +14,7 @@ namespace OcrService.Data
         public MongoContext()
         {
             var mongoCleint = new MongoClient("mongodb://localhost:27017");
-            mongoDatabase = mongoCleint.GetDatabase("OrcDB");
+            mongoDatabase = mongoCleint.GetDatabase("OcrDB");
         }
 
         public IMongoCollection<PolicyInfo> PolicyInfo

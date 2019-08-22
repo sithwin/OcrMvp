@@ -15,7 +15,7 @@ namespace ComputerVision.Api
         {
             var response = string.Empty;
             HttpClient client = new HttpClient();
-            Uri uri = new Uri("https://localhost:5001/api/newbusiness");
+            Uri uri = new Uri("http://localhost:5000/api/newbusiness");
 
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(

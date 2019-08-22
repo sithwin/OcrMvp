@@ -8,7 +8,9 @@ using OcrService.Models;
 
 namespace OcrService.Controllers
 {
-    public class NewBusinessController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class NewBusinessController : ControllerBase
     {
         public readonly MongoContext context = new MongoContext();
 
