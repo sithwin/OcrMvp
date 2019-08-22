@@ -31,7 +31,12 @@ namespace ComputerVision.Models
             set { _nationality = value.Trim(); }
         }
 
-        public String DateOfBirth { get; set; }
+        private string _dateOfBirth;
+        public String DateOfBirth
+        {
+            get { return _dateOfBirth; }
+            set { _dateOfBirth = value.Trim().Replace(" ", ""); }
+        }
 
         private string _gender;
         public string Gender
@@ -114,14 +119,14 @@ namespace ComputerVision.Models
         public String InsuredSignedDate
         {
             get { return _insuredSignedDate; }
-            set { _insuredSignedDate = value.Trim(); }
+            set { _insuredSignedDate = value.Trim().Replace(" ", ""); }
         }
 
         private string _representativeSignedDate;
         public String RepresentativeSignedDate
         {
             get { return _representativeSignedDate; }
-            set { _representativeSignedDate = value.Trim(); }
+            set { _representativeSignedDate = value.Trim().Replace(" ", ""); }
         }
 
         private string _representativeName;

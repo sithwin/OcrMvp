@@ -11,6 +11,7 @@ namespace ComputerVision.Models
         public string PolicyNumber { get; set; }        
         public string FullName { get; set; }        
         public string IdNumber { get; set; }        
+        public string Nationality { get; set; }
         public String DateOfBirth { get; set; }        
         public string Gender { get; set; }        
         public string MaritalStatus { get; set; }        
