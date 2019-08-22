@@ -31,7 +31,7 @@ namespace ComputerVision.Api
             };
 
             HttpResponseMessage result = await client.SendAsync(request);
-            if (result.IsSuccessStatusCode)
+                if (result.IsSuccessStatusCode)
             {
                 response = result.StatusCode.ToString();
             }
