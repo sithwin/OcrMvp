@@ -36,7 +36,6 @@ namespace OcrService.Controllers
             policyInfo.RepresentativeSignedDate = model.RepresentativeSignedDate;
             policyInfo.RepresentativeName = model.RepresentativeName;
             policyInfo.RepresentativeCode = model.RepresentativeCode;
-
             context.PolicyInfo.InsertOne(policyInfo);
         }
     }

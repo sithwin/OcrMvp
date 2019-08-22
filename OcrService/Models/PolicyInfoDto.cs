@@ -25,5 +25,6 @@ namespace OcrService.Models
         public String RepresentativeSignedDate { get; set; }
         public string RepresentativeName { get; set; }
         public string RepresentativeCode { get; set; }
+
     }
 }
