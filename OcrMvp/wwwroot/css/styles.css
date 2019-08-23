@@ -224,7 +224,7 @@ li ol, li ul {
 
 #nav {
 	height: 37px;
-	width: 960px;
+	/*width: 960px;*/
 	background: #111 url('images/nav-bg.jpg') repeat-x scroll;
 }
 
