@@ -32,7 +32,7 @@ namespace OcrMvp.Controllers
                 if (result != null && result.IdNumber != null)
                 {
                     var isIdValid = validation.IsValid(result.IdNumber);
-                    if (isIdValid)
+                    if (!isIdValid)
                     {
                         ModelState.AddModelError(nameof(PolicyInfo.IdNumber), "!!!");
                     }

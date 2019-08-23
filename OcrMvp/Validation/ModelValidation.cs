@@ -17,7 +17,7 @@ namespace OcrMvp.Validation
             {
                 IsFINValid(nric);
             }
-            return false;
+            return true;
         }
         public bool IsNRICValid(string nric)
         {
