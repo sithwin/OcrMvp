@@ -8,12 +8,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MongoDB.Driver;
 using OcrMvp.Data;
 using OcrMvp.Models;
+using OcrMvp.Validation;
 
 namespace OcrMvp.Controllers
 {
     public class PolicysController : Controller
     {
         public readonly MongoContext context = new MongoContext();
+        public ModelValidation validation = new ModelValidation();
 
         // GET: Policys
         public ActionResult Index(string policyNumber)
@@ -26,6 +28,12 @@ namespace OcrMvp.Controllers
                 this.ViewBag.MaritalStatusList = getMaritalStatus();
                 this.ViewBag.PaymentMethodList = getPaymentMethodList();
                 this.ViewBag.PaymentModeList = getPaymentModeList();
+
+                if (result != null && result.IdNumber != null)
+                {
+                    var isIdValid = validation.IsValid(result.IdNumber);
+                    ModelState.AddModelError(nameof(PolicyInfo.IdNumber), "!!!");
+                }
                 return View(result);
             }
             else
