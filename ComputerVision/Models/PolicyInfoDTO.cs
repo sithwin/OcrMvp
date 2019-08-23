@@ -105,7 +105,13 @@ namespace ComputerVision.Models
         public string PaymentMethod
         {
             get { return _paymentMethod; }
-            set { _paymentMethod = value.Trim().Split()[0]; }
+            set
+            {
+                if (value != null && !string.IsNullOrEmpty(value))
+                {
+                    _paymentMethod = value.Trim().Substring(0, 1);
+                }
+            }
         }
 
         private string _initialPremium;

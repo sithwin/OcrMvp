@@ -60,7 +60,7 @@ namespace ComputerVision
                                      | NotifyFilters.DirectoryName;
 
                 // Only watch text files.
-                watcher.Filter = "*.*";
+                watcher.Filter = "*.jpg*";
 
                 // Add event handlers.
                 //watcher.Changed += OnChanged;

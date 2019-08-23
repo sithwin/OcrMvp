@@ -202,7 +202,7 @@ namespace OcrMvp.Controllers
             { Text = "Cheque", Value = "2" });
 
             items.Add(new SelectListItem
-            { Text = "Eletronic Fun Transfer", Value = "3" });
+            { Text = "Eletronic Fund Transfer", Value = "3" });
             return items;
         }
     }

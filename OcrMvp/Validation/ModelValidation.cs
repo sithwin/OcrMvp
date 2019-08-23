@@ -15,7 +15,7 @@ namespace OcrMvp.Validation
             }
             if (nric.StartsWith("F") || nric.StartsWith("G"))
             {
-                IsFINValid(nric);
+                return IsFINValid(nric);
             }
             return true;
         }
