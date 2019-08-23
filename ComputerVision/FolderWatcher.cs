@@ -18,17 +18,9 @@ namespace ComputerVision
 {
     public class FolderWatcher
     {
-        // Replace <Subscription Key> with your valid subscription key.
+       //Computer Vision - Cognitive Services Subscription Key
         const string subscriptionKey = "09fe4860fcb541e896f8fffb68e0597d";
-
-        // You must use the same Azure region in your REST API method as you used to
-        // get your subscription keys. For example, if you got your subscription keys
-        // from the West US region, replace "westcentralus" in the URL
-        // below with "westus".
-        //
-        // Free trial subscription keys are generated in the "westcentralus" region.
-        // If you use a free trial subscription key, you shouldn't need to change
-        // this region.
+       
         const string uriBase =
             "https://manuhackathon.cognitiveservices.azure.com/vision/v2.0/read/core/asyncBatchAnalyze";
 
@@ -41,10 +33,7 @@ namespace ComputerVision
         public FolderWatcher(string sourcePath)
         {            
             this._sourcePath = sourcePath;
-            this._orcClient = new OcrClient();
-            //_config = new MapperConfiguration(cfg => cfg.CreateMap<PolicyInfoDTO, PolicyInfo>()
-            //                                 .ForMember(dest => dest.SumInsured = )));
-            //_mapper = _config.CreateMapper();
+            this._orcClient = new OcrClient();          
 
 
             var configuration = new MapperConfiguration(cfg => {
@@ -81,10 +70,21 @@ namespace ComputerVision
 
                 // Begin watching.
                 watcher.EnableRaisingEvents = true;
-
+                
+               
                 // Wait for the user to quit the program.
-                Console.WriteLine("Press 'q' to quit the sample.");
-                while (Console.Read() != 'q') ;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("SASTY - OCR Engine Initialized");
+                Console.ResetColor();
+                Console.WriteLine("------------------------------------");
+                Console.WriteLine("TO EXIT... PRESS q");
+                Console.WriteLine("------------------------------------");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("SASTY FILE WATCHER IS NOW LISTENING......");
+                Console.ResetColor();
+                Console.WriteLine("------------------------------------");
+               
+                while (Console.Read() != 'q' || Console.Read() != 'Q') ;
             }
         }
 
@@ -100,7 +100,12 @@ namespace ComputerVision
         {
             _fileName = e.Name;
             // Specify what is done when a file is changed, created, or deleted.
+            Console.WriteLine("------------------------------------");
             Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
+            Console.WriteLine("------------------------------------");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("FILE READING IN PROGRESS..........");
+            Console.ResetColor();
             ReadText(e.FullPath).Wait();
         }
 
@@ -157,8 +162,14 @@ namespace ComputerVision
                 {
                     // Display the JSON error data.
                     string errorString = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine("\n\nResponse:\n{0}\n",
+                    Console.WriteLine("------------------------------------");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("FILE READING ERROR !!!!!!!!!");
+                    Console.ResetColor();
+                    Console.WriteLine("\n\nError Response:\n{0}\n",
                         JToken.Parse(errorString).ToString());
+                    Console.WriteLine("------------------------------------");
+                   
                     return;
                 }
 
@@ -184,21 +195,30 @@ namespace ComputerVision
 
                 if (i == 10 && contentString.IndexOf("\"status\":\"Succeeded\"") == -1)
                 {
+                    Console.WriteLine("------------------------------------");
                     Console.WriteLine("\nTimeout error.\n");
+                    Console.WriteLine("------------------------------------");
                     return;
                 }
 
-                // Display the JSON response.
-                Console.WriteLine("\nResponse:\n\n{0}\n",
-                    JToken.Parse(contentString).ToString());
-                Console.WriteLine("\nResponse:\n\n{0}\n",
-                                   JToken.Parse(contentString).ToString());
+                // Display the JSON response.               
+                //Console.WriteLine("\nResponse:\n\n{0}\n",
+                //    JToken.Parse(contentString).ToString());
+
                 JObject o1 = (JObject)JToken.Parse(contentString);
 
                 List<String> OCRData =
                     (from p in o1["recognitionResults"][0]["lines"]
                     select (string)p["text"]).ToList();
-
+                Console.WriteLine("------------------------------------");
+                Console.WriteLine("OCR Read Content... ");
+                Console.ForegroundColor = ConsoleColor.White;
+                foreach(String s in OCRData)
+                {
+                    Console.WriteLine(s);
+                }               
+                Console.ResetColor();
+                Console.WriteLine("------------------------------------");
                 var jsonPath = Path.Combine(Directory.GetParent(Directory.GetParent("Mappings.json").FullName).FullName.Replace("\\bin", ""), "Mappings.json");
                 var jsonstring = System.IO.File.ReadAllText(jsonPath);
 
@@ -206,10 +226,25 @@ namespace ComputerVision
                 var customerDTO = ModelMapping(yourObject, OCRData);
 
                 var model = _mapper.Map<PolicyInfoDTO, PolicyInfo>(customerDTO);
+                Console.WriteLine("------------------------------------");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("File Reading Completed Successfully");
+                Console.ResetColor();
+                Console.WriteLine("------------------------------------");
                 await _orcClient.PostPolicyInfoAsync(model);
-
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Policy Data Pushed to Database");
+                Console.ResetColor();
+                Console.WriteLine("------------------------------------");
                 //Archieve the file
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("File Archiving in Progress...");
                 ArchiveFile(_fileName);
+                Console.WriteLine("File Archiving Done");
+                Console.ResetColor();
+                Console.WriteLine("------------------------------------");
+
+
             }
             catch (Exception e)
             {
