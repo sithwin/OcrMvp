@@ -22,6 +22,7 @@
     <div id="body">
         <div id="content">
             <h1>PERSONAL DETAILS</h1>
+            <p>@Html.ValidationSummary(false)</p>
             <div class="box">
                 <div class="row">
                     <div class="col-md-12">
@@ -44,8 +45,10 @@
                             <div class="col-md-5">
                                 <label asp-for="FullName" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="FullName" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="FullName" class="text-danger"></span>
                             </div>
                         </div>
@@ -53,8 +56,10 @@
                             <div class="col-md-5">
                                 <label asp-for="IdNumber" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="IdNumber" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="IdNumber" class="text-danger"></span>
                             </div>
                         </div>
@@ -62,8 +67,10 @@
                             <div class="col-md-5">
                                 <label asp-for="Nationality" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="Nationality" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="Nationality" class="text-danger"></span>
                             </div>
                         </div>
@@ -71,8 +78,10 @@
                             <div class="col-md-5">
                                 <label asp-for="DateOfBirth" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="DateOfBirth" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                             </div>
                         </div>
@@ -80,9 +89,11 @@
                             <div class="col-md-5">
                                 <label asp-for="Gender" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <select asp-for="Gender"
                                         asp-items="ViewBag.GenderList" class="form-control"></select>
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="Gender" class="text-danger"></span>
                             </div>
                         </div>
@@ -90,9 +101,11 @@
                             <div class="col-md-5">
                                 <label asp-for="MaritalStatus" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <select asp-for="MaritalStatus"
                                         asp-items="ViewBag.MaritalStatusList" class="form-control"></select>
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="MaritalStatus" class="text-danger"></span>
                             </div>
                         </div>
@@ -100,8 +113,10 @@
                             <div class="col-md-5">
                                 <label asp-for="Address" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="Address" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="Address" class="text-danger"></span>
                             </div>
                         </div>
@@ -109,8 +124,10 @@
                             <div class="col-md-5">
                                 <label asp-for="Mobile" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="Mobile" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="Mobile" class="text-danger"></span>
                             </div>
                         </div>
@@ -118,8 +135,10 @@
                             <div class="col-md-5">
                                 <label asp-for="HomeNumber" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="HomeNumber" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="HomeNumber" class="text-danger"></span>
                             </div>
                         </div>
@@ -127,8 +146,10 @@
                             <div class="col-md-5">
                                 <label asp-for="PlanName" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="PlanName" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="PlanName" class="text-danger"></span>
                             </div>
                         </div>
@@ -136,8 +157,10 @@
                             <div class="col-md-5">
                                 <label asp-for="SumInsured" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="SumInsured" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="SumInsured" class="text-danger"></span>
                             </div>
                         </div>
@@ -145,8 +168,10 @@
                             <div class="col-md-5">
                                 <label asp-for="TotalPremiumPayable" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="TotalPremiumPayable" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="TotalPremiumPayable" class="text-danger"></span>
                             </div>
                         </div>
@@ -154,9 +179,11 @@
                             <div class="col-md-5">
                                 <label asp-for="PaymentMode" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <select asp-for="PaymentMode"
                                         asp-items="ViewBag.PaymentModeList" class="form-control"></select>
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="PaymentMode" class="text-danger"></span>
                             </div>
                         </div>
@@ -164,9 +191,11 @@
                             <div class="col-md-5">
                                 <label asp-for="PaymentMethod" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <select asp-for="PaymentMethod"
                                         asp-items="ViewBag.PaymentMethodList" class="form-control"></select>
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="PaymentMethod" class="text-danger"></span>
                             </div>
                         </div>
@@ -174,8 +203,10 @@
                             <div class="col-md-5">
                                 <label asp-for="InsuredSignedDate" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="InsuredSignedDate" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="InsuredSignedDate" class="text-danger"></span>
                             </div>
                         </div>
@@ -183,8 +214,10 @@
                             <div class="col-md-5">
                                 <label asp-for="RepresentativeSignedDate" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="RepresentativeSignedDate" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="RepresentativeSignedDate" class="text-danger"></span>
                             </div>
                         </div>
@@ -192,8 +225,10 @@
                             <div class="col-md-5">
                                 <label asp-for="RepresentativeName" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="RepresentativeName" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="RepresentativeName" class="text-danger"></span>
                             </div>
                         </div>
@@ -201,8 +236,10 @@
                             <div class="col-md-5">
                                 <label asp-for="RepresentativeCode" class="control-label"></label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input asp-for="RepresentativeCode" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
                                 <span asp-validation-for="RepresentativeCode" class="text-danger"></span>
                             </div>
                         </div>
