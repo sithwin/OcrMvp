@@ -111,7 +111,7 @@
                             </div>
                             <div class="col-md-1">
                                 <span asp-validation-for="MaritalStatus" class="text-danger"></span>
-                                @if (Model != null && Model.MaritalStatus != null && (Model.MaritalStatus == "" || Model.MaritalStatus != "S" || Model.MaritalStatus != "M"))
+                                @if (Model != null && Model.MaritalStatus != null && Model.MaritalStatus != "S" && Model.MaritalStatus != "M")
                                 {
                                     <span class="text-danger">!!!</span>
                                 }
