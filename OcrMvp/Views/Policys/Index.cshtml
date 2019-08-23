@@ -95,6 +95,10 @@
                             </div>
                             <div class="col-md-1">
                                 <span asp-validation-for="Gender" class="text-danger"></span>
+                                @if (Model != null && Model.Gender != null && Model.Gender == "")
+                                {
+                                    <span class="text-danger">!!!</span>
+                                }
                             </div>
                         </div>
                         <div class="row form-group">
@@ -107,6 +111,10 @@
                             </div>
                             <div class="col-md-1">
                                 <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+                                @if (Model != null && Model.MaritalStatus != null && Model.MaritalStatus == "")
+                                {
+                                    <span class="text-danger">!!!</span>
+                                }
                             </div>
                         </div>
                         <div class="row form-group">
@@ -185,6 +193,10 @@
                             </div>
                             <div class="col-md-1">
                                 <span asp-validation-for="PaymentMode" class="text-danger"></span>
+                                @if (Model != null && Model.PaymentMode != null && Model.PaymentMode == "")
+                                {
+                                    <span class="text-danger">!!!</span>
+                                }
                             </div>
                         </div>
                         <div class="row form-group">
@@ -197,6 +209,10 @@
                             </div>
                             <div class="col-md-1">
                                 <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+                                @if (Model != null && Model.PaymentMethod != null && Model.PaymentMethod == "")
+                                {
+                                    <span class="text-danger">!!!</span>
+                                }
                             </div>
                         </div>
                         <div class="row form-group">

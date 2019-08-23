@@ -9,9 +9,13 @@ namespace OcrMvp.Validation
         public bool IsValid(object value)
         {
             string nric = value.ToString();
-            if (nric.StartsWith("S") || nric.StartsWith("T") || nric.StartsWith("F") || nric.StartsWith("G"))
+            if (nric.StartsWith("S") || nric.StartsWith("T"))
             {
-                return IsNRICValid(nric) && IsFINValid(nric);
+                return IsNRICValid(nric);
+            }
+            if (nric.StartsWith("F") || nric.StartsWith("G"))
+            {
+                IsFINValid(nric);
             }
             return false;
         }
